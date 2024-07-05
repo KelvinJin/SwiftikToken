@@ -9,6 +9,10 @@ public struct Tiktoken {
     let encoding: Encoding
     private let loader = Loader()
     
+    public init(encoding: Encoding) {
+        self.encoding = encoding
+    }
+    
     public func encode(
         text: String,
         allowedSpecial: Set<String> = Set(),

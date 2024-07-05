@@ -8,7 +8,7 @@
 import Foundation
 
 /// Each encoding file is a map between byte sequences and their ranks/tokens.
-enum Encoding: String {
+public enum Encoding: String {
     case cl100k = "cl100k_base"
     case o200k = "o200k_base"
     case p50k = "p50k_base"
