@@ -18,14 +18,12 @@ extension Encoder {
         case invalidKey
     }
     
-    init(raw: [String: Token]) throws {
+    init(raw: [SpecialData: Token]) {
         var map = [Data: Token]()
         for (key, value) in raw {
-            guard let data = key.data(using: .utf8) else {
-                throw Error.invalidKey
+            if let data = key.rawValue.data(using: .utf8) {
+                map[data] = value
             }
-            
-            map[data] = value
         }
         self = map
     }

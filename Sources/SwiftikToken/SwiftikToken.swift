@@ -7,7 +7,7 @@ struct Tiktoken {
     }
     
     let encoding: Encoding
-    private let loader = BPELoader()
+    private let loader = Loader()
     
     func encode(
         text: String,
@@ -22,14 +22,15 @@ struct Tiktoken {
         }
         
         let encoder = try await loader.load(fileURL: fileURL)
-        let tokenizer = BytePairTokenizer(
+        let regex = try encoding.pattern.makeRegex()
+        let tokenEncoder = TokenEncoder(
             encoder: encoder,
-            specialTokensEncoder: encoding.specialTokensEncoder,
-            regex: encoding.pattern.regex
+            specialTokenEncoder: encoding.specialTokenEncoder,
+            regex: regex
         )
         
-        return try TokenEncoder(
-            tokenizer: tokenizer,
+        return try Tokenizer(
+            encoder: tokenEncoder,
             specialTokens: encoding.specialTokens
         ).encode(
             text: text,

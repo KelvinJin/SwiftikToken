@@ -18,30 +18,30 @@ enum Encoding: String {
         switch self {
         case .cl100k:
             return Encoder(raw: [
-                SpecialToken.endOfText.rawValue: 100257,
-                SpecialToken.fimPrefix.rawValue: 100258,
-                SpecialToken.fimMiddle.rawValue: 100259,
-                SpecialToken.fimSuffix.rawValue: 100260,
-                SpecialToken.endOfPrompt.rawValue: 100276
+                .endOfText: 100257,
+                .fimPrefix: 100258,
+                .fimMiddle: 100259,
+                .fimSuffix: 100260,
+                .endOfPrompt: 100276
             ])
         case .o200k:
-            return BytePairEncoder(raw: [
-                SpecialToken.endOfText.rawValue: 199999,
-                SpecialToken.endOfPrompt.rawValue: 200018
+            return Encoder(raw: [
+                .endOfText: 199999,
+                .endOfPrompt: 200018
             ])
         case .p50k:
-            return BytePairEncoder(raw: [
-                SpecialToken.endOfText.rawValue: 50256
+            return Encoder(raw: [
+                .endOfText: 50256
             ])
         case .r50k:
-            return BytePairEncoder(raw: [
-                SpecialToken.endOfText.rawValue: 50256
+            return Encoder(raw: [
+                .endOfText: 50256
             ])
         }
     }
     
     var specialTokens: Set<String> {
-        return Set(specialTokensEncoder.data.keys.map { String(data: $0, encoding: .utf8)! })
+        return Set(specialTokenEncoder.keys.compactMap { String(data: $0, encoding: .utf8) })
     }
     
     var pattern: Pattern {

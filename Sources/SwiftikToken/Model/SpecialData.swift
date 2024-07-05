@@ -1,5 +1,5 @@
 //
-//  SpecialToken.swift
+//  SpecialData.swift
 //
 //
 //  Created by Jin Wang on 4/7/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SpecialToken: String {
+enum SpecialData: String {
     /**
      * Represents the end of the text.
      */
