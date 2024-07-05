@@ -1,6 +1,6 @@
 import Foundation
 
-struct Tiktoken {
+public struct Tiktoken {
     
     enum Error: Swift.Error {
         case vocabularyFileNotFound
@@ -9,7 +9,7 @@ struct Tiktoken {
     let encoding: Encoding
     private let loader = Loader()
     
-    func encode(
+    public func encode(
         text: String,
         allowedSpecial: Set<String> = Set(),
         disallowedSpecial: Set<String> = Set(arrayLiteral: "all")

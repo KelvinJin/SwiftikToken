@@ -11,7 +11,7 @@ import Foundation
 /// byte sequence on the left is mapped to a token. This mapping file allows us to encode and
 /// decode a sequence of byte. In most cases, the token is also known as the rank of the byte sequence
 /// in the byte pair encoding algorithm.
-typealias Token = Int
+public typealias Token = Int
 
 extension Token {
     /// The default token/rank for any unknown byte sequences.
