@@ -22,7 +22,7 @@ struct Loader {
     func load(fileURL: URL) async throws -> Encoder {
         var encoder = Encoder()
         
-        for try await line in fileURL.lines {
+        for line in try fileURL.lines() {
             let splits = line.split(separator: " ")
             guard splits.count == 2 else {
                 throw Error.invalidFormat
@@ -37,5 +37,13 @@ struct Loader {
         }
         
         return encoder
+    }
+}
+
+private extension URL {
+    func lines() throws -> [String] {
+        return try String(contentsOf: self, encoding: .utf8)
+            .split(separator: "\n")
+            .map { String($0) }
     }
 }
