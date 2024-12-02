@@ -77,4 +77,10 @@ final class SwiftikTokenTests: XCTestCase {
         let tokens = try await tokenizer.encode(text: text)
         XCTAssertEqual(expect, tokens)
     }
+    
+    func testSpecialTokens() async throws {
+        let tokenizer = Tiktoken(encoding: .p50k)
+        let tokens = try await tokenizer.encode(text: "<|endoftext|>", allowedSpecial: Set(arrayLiteral: "all"))
+        XCTAssertEqual([50256], tokens)
+    }
 }

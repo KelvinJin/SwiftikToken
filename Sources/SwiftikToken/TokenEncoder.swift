@@ -47,7 +47,7 @@ struct TokenEncoder {
             
             let nextSpecialMatch = allowedSpecialTokens.findMatch(in: slice)
             if let match = nextSpecialMatch {
-                slice = String(slice[...match.index])
+                slice = String(slice[..<match.index])
             }
             
             let matches = slice.matches(of: regex)
